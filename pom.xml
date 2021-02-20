@@ -8,6 +8,7 @@
     <artifactId>simple-crud</artifactId>
     <version>1.0.0</version>
 
+    <name>Simple CRUD</name>
     <description>Simple CRUD</description>
     <url>https://github.com/loyayz/simple-crud</url>
 

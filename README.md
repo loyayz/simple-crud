@@ -1,5 +1,6 @@
 # simple-crud
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.loyayz/simple-crud/badge.svg)](https://mvnrepository.com/artifact/com.loyayz/simple-crud)
+
 简单通用的单表增删改查。
 
 ## 1 本项目的主要目标
@@ -79,7 +80,7 @@ public class User extends MyBaseEntity {
 
 ### 3.4 使用
 ```java
-@Autowire
+@Autowired
 BaseMapper<User> userMapper;
 
 public void test() {
@@ -154,7 +155,7 @@ public class User extends MyBaseEntity {
 - 默认实体类映射规则：驼峰转下划线（类名->表名，属性名->字段名）
 - 可通过 JPA 的 @Table 和 @Column 修改映射名（实现了 Table(name(),schema())、Column(name(),insertable(),updatable())）
 - 关键字static、关键字transient、注解 javax.persistence.Transient 修饰的属性不映射为表字段
-- 默认主键属性名为 id，可通过主键 javax.persistence.Id 声明属性为主键
+- 默认主键属性名为 id，可通过注解 javax.persistence.Id 声明属性为主键
 - 默认主键策略为雪花算法，可通过 @IdStrategy 修改策略（可通过系统参数设置雪花算法全局起始时间，例 -Dsimple.snowflake=你的起始时间戳）
 
 
@@ -178,3 +179,4 @@ public class SysUser {
 }
 ```
 
+[使用示例](https://github.com/loyayz/simple-sample)
