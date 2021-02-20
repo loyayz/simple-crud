@@ -20,7 +20,7 @@
 </dependencies>
 ```
 ## 3 快速设置
-simple-crud 的基本原理是将扫描的实体类做为 BaseMapper<T> 的泛型动态注册到 Spring，并将实体类映射为数据库中的表和字段信息，因此无需继承基类 Mapper 即可使用通用方法。
+simple-crud 的基本原理是将扫描的实体类做为 `BaseMapper<T>` 的泛型动态注册到 Spring，并将实体类映射为数据库中的表和字段信息，因此无需继承基类 Mapper 即可使用通用方法。
 
 ### 3.1 定义基类/注解（可选）
 ```java
@@ -109,12 +109,12 @@ public void test() {
 import com.loyayz.simple.BaseModel;
 
 // 实体类 implements BaseModel
-public class User implements BaseModel {
+public class User implements BaseModel<User> {
 //...
 }
 // 或基类 implements BaseModel
-public abstract class MyBaseEntity implements BaseModel {}
-public class User extends MyBaseEntity {
+public abstract class MyBaseEntity<T> implements BaseModel<T> {}
+public class User extends MyBaseEntity<User> {
 //...
 }
 ```
@@ -141,9 +141,9 @@ public class User extends MyBaseEntity {
 - `default List<T> listByCondition(Sorter... sorters)`：根据非空字段查询列表
 - `default Page<T> pageByCondition(int pageNum, int pageSize, Sorter... sorters)`：根据非空字段查询分页（基于 PageHelper，请自行添加依赖和配置）
 - `default long countByCondition()`：根据非空字段查询总数
-- `default long existByCondition()`：根据非空字段，查询是否存在记录
+- `default boolean existByCondition()`：根据非空字段，查询是否存在记录
 - `default <E extends Serializable> E idValue()`：主键值，建议子类替换为效率更高的判断方式（例如主键为 id 的情况下，直接 return id）
-- `default BaseMapper<T> mapper()`：获取实体类做为泛型的 BaseMapper<T>
+- `default BaseMapper<T> mapper()`：获取实体类做为泛型的 `BaseMapper<T>`
 - `default ModelInfo modelInfo()`：获取实体类对应的信息
 
 大部分方法都是以当前实体为参数进行增删改查的操作，少数几个方法可以通过传参进行其他的操作。
